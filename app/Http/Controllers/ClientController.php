@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientFormRequest;
 use App\Models\Client;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $clients = Client::latest()->paginate(1);
+        Gate::authorize('viewAny', Client::class);
+        $clients = $request->user()->clients()->orderByDesc('created_at')->paginate(20);
 
         return view('clients.index', [
             'clients' => $clients,
@@ -22,35 +22,32 @@ class ClientController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
+        Gate::authorize('create', Client::class);
+
         return view('clients.form', [
-            'client' => new Client(),
+            'client' => new Client,
             'action' => route('clients.store'),
             'title' => __('client.create_title'),
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(ClientFormRequest $request): RedirectResponse
     {
+        Gate::authorize('create', Client::class);
         $request->user()->clients()->create(
             $request->validated()
         );
+
         return redirect()->route('clients.index')
             ->with('success', __('client.created'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Client $client): View
     {
+        Gate::authorize('update', $client);
+
         return view('clients.form', [
             'action' => route('clients.update', $client),
             'client' => $client,
@@ -58,22 +55,18 @@ class ClientController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(ClientFormRequest $request, Client $client): RedirectResponse
     {
+        Gate::authorize('update', $client);
         $client->update($request->validated());
 
         return redirect()->route('clients.index')
             ->with('success', __('client.updated'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Client $client): RedirectResponse
     {
+        Gate::authorize('delete', $client);
         $client->delete();
 
         return redirect()->route('clients.index')

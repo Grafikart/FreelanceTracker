@@ -1,4 +1,4 @@
-.PHONY: help lint dev install
+.PHONY: help lint dev install seed
 
 help: ## Display this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -8,7 +8,7 @@ deploy: ## Déploie une nouvelle version
 	rsync -avH ./storage/app/private/movies.html -e ssh jonathan-boyer:~/sites/jonathan-boyer.fr/public/movies.html
 
 lint: ## Format the code and generates new helpers
-	./vendor/bin/pint
+	# ./vendor/bin/pint
 	php artisan ide-helper:generate --helpers
 	php artisan ide-helper:meta
 	php artisan ide-helper:models -M
@@ -20,6 +20,9 @@ dev: ## Start dev server
 install: vendor/autoload.php .env public/build/manifest.json ## Install the project
 	php artisan migrate
 	php artisan app:user
+
+seed: ## Lance le seeding
+	php artisan migrate:fresh --seed
 
 .env:
 	cp .env.example .env

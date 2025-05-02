@@ -33,7 +33,7 @@
         />
 
         <div class="flex justify-end">
-            <button class="btn btn-primary" type="submit">Envoyer</button>
+            <button class="btn btn-primary" type="submit">{{ __('form.save') }}</button>
         </div>
     </form>
 

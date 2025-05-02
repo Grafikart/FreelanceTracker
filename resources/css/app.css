@@ -1,55 +1,17 @@
-@import "tailwindcss";
+@import "./typography.css";
+@import "./tailwind.css";
+@import "./daisyui.css";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@plugin 'daisyui';
-
-@plugin "daisyui/theme" {
-    name: "winter";
-    default: true;
-    prefersdark: true;
-    color-scheme: "light";
-    --color-base-100: oklch(100% 0 0);
-    --color-base-200: oklch(97.466% 0.011 259.822);
-    --color-base-300: oklch(93.268% 0.016 262.751);
-    --color-base-content: var(--color-slate-900);
-    --color-primary: var(--color-indigo-700);
-    --color-primary-content: var(--color-indigo-50);
-    --color-secondary: var(--color-purple-700);
-    --color-secondary-content: var(--color-purple-50);
-    --color-accent: oklch(59.939% 0.191 335.171);
-    --color-accent-content: oklch(11.988% 0.038 335.171);
-    --color-neutral: oklch(19.616% 0.063 257.651);
-    --color-neutral-content: oklch(83.923% 0.012 257.651);
-    --color-info: oklch(88.127% 0.085 214.515);
-    --color-info-content: oklch(17.625% 0.017 214.515);
-    --color-success: oklch(80.494% 0.077 197.823);
-    --color-success-content: oklch(16.098% 0.015 197.823);
-    --color-warning: oklch(89.172% 0.045 71.47);
-    --color-warning-content: oklch(17.834% 0.009 71.47);
-    --color-error: oklch(57% 0.245 27.325);
-    --color-error-content: oklch(97% 0.013 17.38);
-    --radius-selector: 0.25rem;
-    --radius-field: 0.5rem;
-    --radius-box: 0rem;
-    --size-selector: 0.25rem;
-    --size-field: 0.25rem;
-    --border: 1px;
-    --depth: 1;
-    --noise: 1;
+@utility h1 {
+    @apply text-2xl font-bold text-base-content;
 }
 
-@utility container {
-    max-width: 1100px;
-    margin-inline: auto;
-    padding-inline: 2rem;
+@utility btn {
+    & > .iconify:first-child:not(:last-child) {
+        margin-left: -.2em;
+    }
 }
 
-@theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+@plugin "@iconify/tailwind4" {
+    prefixes: lucide;
 }

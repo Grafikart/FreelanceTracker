@@ -7,7 +7,7 @@
             <h3 class="text-base-content/70 mt-2 text-center text-sm">
                 {{ __('auth.subtitle') }}
             </h3>
-            <form class="mt-6 md:mt-10" method="post" action="{{ route('login') }}">
+            <form class="mt-6 md:mt-10 space-y-4" method="post" action="{{ route('login') }}">
                 @csrf
                 <x-form.field
                     type="email"
