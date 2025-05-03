@@ -1,20 +1,16 @@
-@extends('base')
+@extends("base")
 
-@section('body')
+@section("body")
+    <h1 class="text-2xl font-bold">{{ __("settings.title") }}</h1>
 
-    <h1 class="text-2xl font-bold">{{ __('settings.title') }}</h1>
-
-    <form
-        action=""
-        method="post"
-        class="space-y-4 mt-6"
-    >
-
+    <form action="" method="post" class="mt-6 space-y-4">
         @csrf
 
         <div class="md:flex">
-            <h2 class="md:w-1/4 text-xl font-bold">{{ __('settings.company_info') }}</h2>
-            <div class="md:w-3/4 space-y-3">
+            <h2 class="text-xl font-bold md:w-1/4">
+                {{ __("settings.company_info") }}
+            </h2>
+            <div class="space-y-3 md:w-3/4">
                 <x-form.field
                     layout="vertical"
                     name="company_name"
@@ -53,11 +49,13 @@
             </div>
         </div>
 
-        <hr class="border-base-300">
+        <hr class="border-base-300" />
 
         <div class="md:flex">
-            <h2 class="md:w-1/4 text-xl font-bold">{{ __('settings.app_info') }}</h2>
-            <div class="md:w-3/4 space-y-3">
+            <h2 class="text-xl font-bold md:w-1/4">
+                {{ __("settings.app_info") }}
+            </h2>
+            <div class="space-y-3 md:w-3/4">
                 <x-form.field
                     layout="vertical"
                     name="locale"
@@ -105,8 +103,9 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <button class="btn btn-primary" type="submit">{{ __('form.save') }}</button>
+            <button class="btn btn-primary" type="submit">
+                {{ __("form.save") }}
+            </button>
         </div>
     </form>
-
 @endsection

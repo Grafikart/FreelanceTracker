@@ -15,8 +15,8 @@ Alpine.data("clipboard", (text: string) => ({
         }
     },
 
-    get text () {
-          return this.copied ? 'Copied!' : this.baseText;
+    get text() {
+        return this.copied ? "Copied!" : this.baseText;
     },
 
     copy() {

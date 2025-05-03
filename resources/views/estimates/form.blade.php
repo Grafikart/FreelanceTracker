@@ -1,25 +1,23 @@
-@extends('base')
+@extends("base")
 
-@section('body')
-
+@section("body")
     <div class="flex justify-between">
         <h1 class="h1">{{ $title }}</h1>
     </div>
 
-    @include('shared.form-errors')
+    @include("shared.form-errors")
 
     <form
         action="{{ $action }}"
         method="post"
-        class="space-y-4 mt-6"
+        class="mt-6 space-y-4"
         x-data="rows({{ $estimate->asAlpineData() }})"
     >
-        @if($estimate->id)
-            @method('put')
+        @if ($estimate->id)
+            @method("put")
         @endif
 
         @csrf
-
 
         <div class="grid grid-cols-2 gap-x-6 gap-y-2">
             <x-form.field
@@ -71,7 +69,7 @@
             />
         </div>
 
-        @include('shared.rows')
+        @include("shared.rows")
 
         <x-form.field
             type="textarea"
@@ -81,11 +79,16 @@
             layout="vertical"
         />
 
-        <input type="hidden" x-bind:value="JSON.stringify(rows)" name="rows">
+        <input
+            type="hidden"
+            x-bind:value="JSON.stringify(rows)"
+            name="rows"
+        />
 
         <div class="flex justify-end">
-            <button class="btn btn-primary" type="submit">{{ __('form.save') }}</button>
+            <button class="btn btn-primary" type="submit">
+                {{ __("form.save") }}
+            </button>
         </div>
     </form>
-
 @endsection

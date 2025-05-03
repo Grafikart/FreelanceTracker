@@ -1,18 +1,13 @@
-@extends('base')
+@extends("base")
 
-@section('body')
-
+@section("body")
     <div class="flex justify-between">
         <h1 class="text-2xl font-bold">{{ $title }}</h1>
     </div>
 
-    <form
-        action="{{ $action }}"
-        method="post"
-        class="space-y-4 mt-6"
-    >
-        @if($client->id)
-            @method('put')
+    <form action="{{ $action }}" method="post" class="mt-6 space-y-4">
+        @if ($client->id)
+            @method("put")
         @endif
 
         @csrf
@@ -33,8 +28,9 @@
         />
 
         <div class="flex justify-end">
-            <button class="btn btn-primary" type="submit">{{ __('form.save') }}</button>
+            <button class="btn btn-primary" type="submit">
+                {{ __("form.save") }}
+            </button>
         </div>
     </form>
-
 @endsection

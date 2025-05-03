@@ -2,15 +2,26 @@
     .pdf {
         line-height: 1.4;
         color: #1d1e1c;
-        font-family: Helvetica Neue, Helvetica, Arial, Verdana, Nimbus Sans L, sans-serif;
-        font-size: .75em;
+        font-family:
+            Helvetica Neue,
+            Helvetica,
+            Arial,
+            Verdana,
+            Nimbus Sans L,
+            sans-serif;
+        font-size: 0.75em;
     }
 
     .pdf strong {
         color: #1d1e1c;
     }
 
-    .pdf h1, .pdf h2, .pdf h3, .pdf h4, .pdf h5, .pdf h6 {
+    .pdf h1,
+    .pdf h2,
+    .pdf h3,
+    .pdf h4,
+    .pdf h5,
+    .pdf h6 {
         margin: 0;
         line-height: 1.2;
     }
@@ -67,7 +78,8 @@
         border-collapse: collapse;
     }
 
-    .invoice-table td, .invoice-table th {
+    .invoice-table td,
+    .invoice-table th {
         text-align: right;
         border: 1px solid #bbb;
         padding: 8px;
@@ -79,12 +91,14 @@
         border-top: none;
     }
 
-    .invoice-table th:first-child, .invoice-table td:first-child {
+    .invoice-table th:first-child,
+    .invoice-table td:first-child {
         text-align: left;
         border-left: none;
     }
 
-    .invoice-table th:last-child, .invoice-table td:last-child {
+    .invoice-table th:last-child,
+    .invoice-table td:last-child {
         border-right: none;
     }
 
@@ -122,15 +136,18 @@
         height: 30px;
     }
 </style>
-<table style="width: 100%; height: 100px; border-collapse: collapse" class="invoice-header">
+<table
+    style="width: 100%; height: 100px; border-collapse: collapse"
+    class="invoice-header"
+>
     <tr>
-        <td colspan="2" style="vertical-align: top;">
-            <h1>{{ __('pdf.estimate') }} {{ $estimate->accounting_id }}</h1>
+        <td colspan="2" style="vertical-align: top">
+            <h1>{{ __("pdf.estimate") }} {{ $estimate->accounting_id }}</h1>
         </td>
-        <th style=" vertical-align: top;">{{ __('pdf.from') }}</th>
-        <td style="white-space: nowrap;">
+        <th style="vertical-align: top">{{ __("pdf.from") }}</th>
+        <td style="white-space: nowrap">
             <h2>{{ $estimate->user->company_name }}</h2>
-            <p style="margin-top: 5px;">
+            <p style="margin-top: 5px">
                 {!! nl2br($estimate->user->company_address) !!}
             </p>
         </td>
@@ -139,28 +156,33 @@
         <td colspan="4" class="spacer"></td>
     </tr>
     <tr>
-        <th rowspan="2" style="width: 30px; vertical-align: top;">{{ __('pdf.to') }}</th>
-        <td rowspan="2" style="width: 200px;">
+        <th rowspan="2" style="width: 30px; vertical-align: top">
+            {{ __("pdf.to") }}
+        </th>
+        <td rowspan="2" style="width: 200px">
             <h2>{{ $estimate->client->name }}</h2>
-            <p style="margin-top: 5px;">
+            <p style="margin-top: 5px">
                 {!! nl2br($estimate->client->address) !!}
-            </p></td>
-        <th>{{ __('pdf.accounting_id') }}</th>
-        <td style="width: 200px;">
+            </p>
+        </td>
+        <th>{{ __("pdf.accounting_id") }}</th>
+        <td style="width: 200px">
             <strong>{{ $estimate->accounting_id }}</strong>
         </td>
     </tr>
     <tr>
-        <th>{{ __('pdf.created_at') }}</th>
+        <th>{{ __("pdf.created_at") }}</th>
         <td>
-            <strong>{{ $estimate->created_at->format(config('i18n.date_format')) }}</strong>
+            <strong>
+                {{ $estimate->created_at->format(config("i18n.date_format")) }}
+            </strong>
         </td>
     </tr>
     <tr>
         <td colspan="4" class="spacer"></td>
     </tr>
     <tr>
-        <th style=" vertical-align: top;">{{ __('pdf.label') }}</th>
+        <th style="vertical-align: top">{{ __("pdf.label") }}</th>
         <td colspan="3">{{ $estimate->label }}</td>
     </tr>
 </table>
@@ -169,51 +191,59 @@
 
 <table class="invoice-table">
     <thead>
-    <tr>
-        <th>{{ __('pdf.label') }}</th>
-        <th style="width: 50px;">{{ __('pdf.quantity') }}</th>
-        <th style="width: 75px;">{{ __('pdf.unit_price') }}</th>
-        <th style="width: 75px;">{{ __('pdf.total') }}</th>
-    </tr>
+        <tr>
+            <th>{{ __("pdf.label") }}</th>
+            <th style="width: 50px">{{ __("pdf.quantity") }}</th>
+            <th style="width: 75px">{{ __("pdf.unit_price") }}</th>
+            <th style="width: 75px">{{ __("pdf.total") }}</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach($estimate->rows as $row)
-        <tr>
-            <td>{{ $row->label }}</td>
-            <td>{{ $row->quantity }}</td>
-            <td>@money($row->price, $estimate->currency)</td>
-            <td>
-                <strong>@money($row->total, $estimate->currency)</strong>
-            </td>
-        </tr>
-    @endforeach
+        @foreach ($estimate->rows as $row)
+            <tr>
+                <td>{{ $row->label }}</td>
+                <td>{{ $row->quantity }}</td>
+                <td>@money($row->price, $estimate->currency)</td>
+                <td>
+                    <strong>
+                        @money($row->total, $estimate->currency)
+                    </strong>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
     <tfoot>
-    <tr>
-        <td colspan="3">{{ __('pdf.subtotal') }}</td>
-        <td><strong>@money($estimate->total_price, $estimate->currency)</strong></td>
-    </tr>
-    <tr>
-        <td colspan="3">{{ __('pdf.subtotal') }}</td>
-        <td>
-            <strong>@money($estimate->total_tax, $estimate->currency)</strong>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <strong>{{ __('pdf.total') }}</strong>
-        </td>
-        <td>
-            <strong>@money($estimate->total)</strong>
-        </td>
-    </tr>
+        <tr>
+            <td colspan="3">{{ __("pdf.subtotal") }}</td>
+            <td>
+                <strong>
+                    @money($estimate->total_price, $estimate->currency)
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ __("pdf.subtotal") }}</td>
+            <td>
+                <strong>
+                    @money($estimate->total_tax, $estimate->currency)
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <strong>{{ __("pdf.total") }}</strong>
+            </td>
+            <td>
+                <strong>@money($estimate->total)</strong>
+            </td>
+        </tr>
     </tfoot>
 </table>
 
 <div class="spacer"></div>
 
 <footer>
-    <p style="font-size: .8em;">
+    <p style="font-size: 0.8em">
         {{ $estimate->footer }}
     </p>
 </footer>

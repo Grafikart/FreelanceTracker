@@ -1,5 +1,5 @@
-@extends('base')
+@extends("base")
 
-@section('body')
-
+@section("body")
+    
 @endsection

@@ -1,9 +1,9 @@
-import Alpine from 'alpinejs'
+import Alpine from "alpinejs";
 
-Alpine.directive('grow', (el) => {
-    el.addEventListener('input', () => {
-        el.style.height = 'auto'
+Alpine.directive("grow", (el) => {
+    el.addEventListener("input", () => {
+        el.style.height = "auto";
 
-        el.style.height = `${el.scrollHeight}px`
-    })
-})
+        el.style.height = `${el.scrollHeight}px`;
+    });
+});
