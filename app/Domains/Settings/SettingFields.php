@@ -19,6 +19,7 @@ class SettingFields
         // Worker settings
         $table->integer('hourly_rate')->unsigned()->default(0);
         $table->integer('hours_per_week')->unsigned()->default(35);
+        $table->integer('tax')->unsigned()->default(0);
 
         // Site settings
         $table->string('timezone')->default('UTC');

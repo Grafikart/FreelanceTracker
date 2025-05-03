@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('label');
-            $table->string('tax');
+            $table->integer('tax');
             $table->string('currency')->default('EUR');
             $table->json('rows');
             $table->integer('total')->default(0);

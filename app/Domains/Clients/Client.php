@@ -2,8 +2,9 @@
 
 namespace App\Domains\Clients;
 
-use App\Models\IdeHelperClient;
+use App\Domains\Clients\Factories\ClientFactory;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,11 @@ class Client extends Model
         'address',
         'user_id',
     ];
+
+    protected static function newFactory(): Factory
+    {
+        return ClientFactory::new();
+    }
 
     public function user(): BelongsTo
     {

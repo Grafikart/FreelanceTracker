@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Domains\Estimates\Factories;
 
 use App\Domains\Clients\Client;
 use App\Domains\Invoicing\InvoiceRow;
@@ -12,10 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EstimateFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password = '0000';
+
+    protected $model = \App\Domains\Estimates\Estimate::class;
 
     /**
      * Define the model's default state.

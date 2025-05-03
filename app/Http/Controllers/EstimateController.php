@@ -23,7 +23,7 @@ class EstimateController extends Controller
             ->user()
             ->estimates()
             ->with('client')
-            ->when($tab === 'open', fn($query) => $query->open())
+            ->when($tab === 'open', fn($query) => $query->open()) // @phpstan-ignore-line scope is not recognized
             ->orderByDesc('created_at');
         $estimates = $tab === 'open' ? $builder->get() : $builder->paginate(20);
 
@@ -31,6 +31,7 @@ class EstimateController extends Controller
             'user' => $this->user(),
             'estimates' => $estimates,
             'tab' => $tab,
+            // @phpstan-ignore-next-line open scope is not recognized
             'count' => $tab === 'open' ? $estimates->count() : $request->user()->estimates()->open()->count(),
             'title' => __('estimate.list_title'),
         ]);

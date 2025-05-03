@@ -1,7 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Domains\Clients\Factories;
 
+use App\Domains\Clients\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ClientFactory extends Factory
 {
+
+    protected $model = Client::class;
+
     /**
      * The current password being used by the factory.
      */
@@ -24,6 +29,7 @@ class ClientFactory extends Factory
         return [
             'name' => fake()->company(),
             'address' => fake()->address(),
+            'user_id' => User::factory()
         ];
     }
 

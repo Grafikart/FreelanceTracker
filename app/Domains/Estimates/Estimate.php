@@ -3,17 +3,21 @@
 namespace App\Domains\Estimates;
 
 use App\Domains\Clients\Client;
-use App\Models\IdeHelperEstimate;
+use App\Domains\Estimates\Factories\EstimateFactory;
 use App\Domains\Invoicing\InvoiceRow;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 
 /**
  * @mixin IdeHelperEstimate
+ *
+ * @property Collection<InvoiceRow> $rows
  */
 class Estimate extends Model
 {
@@ -39,6 +43,11 @@ class Estimate extends Model
         'rows',
         'state',
     ];
+
+    protected static function newFactory(): Factory
+    {
+        return EstimateFactory::new();
+    }
 
     protected function casts()
     {
@@ -116,11 +125,9 @@ class Estimate extends Model
         }
     }
 
-    public float $total_tax {
+    public int $total_tax {
         get {
-            return round(
-                    $this->total_price * $this->tax
-                / 100, 2);
+            return (int)round($this->total_price * $this->tax / 100);
         }
     }
 
