@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 
 /**
  * Update estimate state
+ *
  * @property \App\Domains\Estimates\Estimate $estimate
  */
 class EstimateStateFormRequest extends FormRequest

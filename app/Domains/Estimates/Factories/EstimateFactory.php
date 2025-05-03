@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EstimateFactory extends Factory
 {
-
     protected $model = \App\Domains\Estimates\Estimate::class;
 
     /**
@@ -31,6 +30,7 @@ class EstimateFactory extends Factory
                 'price' => random_int(1, 100),
             ]));
         }
+
         return [
             'label' => fake()->sentence(),
             'accounting_id' => random_int(1, 100),
@@ -42,8 +42,7 @@ class EstimateFactory extends Factory
             'footer' => fake()->text(),
             'rows' => $rows,
             'client_id' => Client::factory(),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
         ];
     }
-
 }

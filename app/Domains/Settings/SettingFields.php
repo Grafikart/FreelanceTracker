@@ -6,7 +6,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class SettingFields
 {
-
     /**
      * Add settings fields for the "users" table
      */

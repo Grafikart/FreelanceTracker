@@ -15,13 +15,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 
 /**
- * @mixin IdeHelperEstimate
- *
  * @property Collection<InvoiceRow> $rows
+ * @mixin IdeHelperEstimate
  */
 class Estimate extends Model
 {
-
     use HasFactory;
 
     const int STATUS_DRAFT = 0;
@@ -95,7 +93,8 @@ class Estimate extends Model
         if ($lastEstimate) {
             $estimateId = $lastEstimate->accounting_id + 1;
         }
-        return (new self())->forceFill([
+
+        return (new self)->forceFill([
             'user_id' => $user->id,
             'currency' => $user->currency,
             'created_at' => now(),
@@ -121,13 +120,13 @@ class Estimate extends Model
      */
     public int $total_price {
         get {
-            return $this->rows->sum(fn(InvoiceRow $row) => $row->price * $row->quantity);
+            return $this->rows->sum(fn (InvoiceRow $row) => $row->price * $row->quantity);
         }
     }
 
     public int $total_tax {
         get {
-            return (int)round($this->total_price * $this->tax / 100);
+            return (int) round($this->total_price * $this->tax / 100);
         }
     }
 

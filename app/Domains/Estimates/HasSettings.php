@@ -11,7 +11,6 @@ use DateTimeInterface;
  */
 trait HasSettings
 {
-
     public function formatDate(DateTimeInterface $date): string
     {
         return $date->format($this->date_format);
@@ -19,7 +18,6 @@ trait HasSettings
 
     public function formatDateTime(DateTimeInterface $date): string
     {
-        return $date->format($this->date_format . ' ' . 'H:i');
+        return $date->format($this->date_format.' '.'H:i');
     }
-
 }

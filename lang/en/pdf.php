@@ -1,4 +1,5 @@
 <?php
+
 return [
     'estimate' => 'Estimate',
     'from' => 'From',

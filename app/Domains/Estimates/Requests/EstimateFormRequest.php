@@ -19,7 +19,7 @@ class EstimateFormRequest extends FormRequest
         }
 
         $estimate = $this->route()->parameter('estimate');
-        if (!$estimate instanceof Estimate) {
+        if (! $estimate instanceof Estimate) {
             throw new \Exception('Estimate not found');
         }
 
@@ -69,5 +69,4 @@ class EstimateFormRequest extends FormRequest
 
         return $rules;
     }
-
 }

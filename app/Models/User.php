@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasSettings;
+    use HasFactory, HasSettings, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public string $avatar {
         get {
-            return sprintf("https://gravatar.com/avatar/%s", hash('sha256', strtolower(trim($this->email))));
+            return sprintf('https://gravatar.com/avatar/%s', hash('sha256', strtolower(trim($this->email))));
         }
     }
 }

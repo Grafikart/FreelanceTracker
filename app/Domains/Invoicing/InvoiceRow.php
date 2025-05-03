@@ -4,7 +4,6 @@ namespace App\Domains\Invoicing;
 
 class InvoiceRow
 {
-
     public string $label = '';
 
     public int $quantity = 1;
@@ -12,7 +11,7 @@ class InvoiceRow
     public int $price = 0;
 
     /**
-     * @param array{label: string, quantity: int, price: int} $data
+     * @param  array{label: string, quantity: int, price: int}  $data
      */
     public function __construct(array $data)
     {

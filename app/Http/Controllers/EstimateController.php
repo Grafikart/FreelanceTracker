@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains\Estimates\Requests\EstimateFormRequest;
-use App\Domains\Estimates\Requests\EstimateStateFormRequest;
 use App\Domains\Clients\Client;
 use App\Domains\Estimates\Estimate;
+use App\Domains\Estimates\Requests\EstimateFormRequest;
+use App\Domains\Estimates\Requests\EstimateStateFormRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class EstimateController extends Controller
             ->user()
             ->estimates()
             ->with('client')
-            ->when($tab === 'open', fn($query) => $query->open()) // @phpstan-ignore-line scope is not recognized
+            ->when($tab === 'open', fn ($query) => $query->open()) // @phpstan-ignore-line scope is not recognized
             ->orderByDesc('created_at');
         $estimates = $tab === 'open' ? $builder->get() : $builder->paginate(20);
 
@@ -46,6 +46,7 @@ class EstimateController extends Controller
         }
 
         Gate::authorize('view', $estimate);
+
         return view('estimates.show', [
             'estimate' => $estimate,
             'url' => \URL::signedRoute('estimates.show', $estimate, now()->addDays(10), true),
@@ -62,6 +63,7 @@ class EstimateController extends Controller
         $pdf = Pdf::loadView('estimates.pdf', [
             'estimate' => $estimate,
         ]);
+
         return $pdf->stream('estimate.pdf');
     }
 
@@ -70,6 +72,7 @@ class EstimateController extends Controller
         Gate::authorize('create', Estimate::class);
 
         $user = $this->user();
+
         return view('estimates.form', [
             'estimate' => Estimate::makeFromUser($user),
             'action' => route('estimates.store'),
@@ -91,6 +94,7 @@ class EstimateController extends Controller
     public function edit(Request $request, Estimate $estimate): View
     {
         Gate::authorize('update', $estimate);
+
         return view('estimates.form', [
             'action' => route('estimates.update', $estimate),
             'estimate' => $estimate,

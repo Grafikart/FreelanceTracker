@@ -8,7 +8,7 @@ deploy: ## Déploie une nouvelle version
 	rsync -avH ./storage/app/private/movies.html -e ssh jonathan-boyer:~/sites/jonathan-boyer.fr/public/movies.html
 
 lint: ## Format the code and generates new helpers
-	# ./vendor/bin/pint
+	./vendor/bin/pint
 	php artisan ide-helper:generate --helpers
 	php artisan ide-helper:meta
 	php artisan ide-helper:models -M

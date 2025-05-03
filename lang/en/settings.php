@@ -1,4 +1,5 @@
 <?php
+
 return [
     'title' => 'Settings',
     'company_info' => 'Company info',
@@ -18,5 +19,5 @@ return [
         'system' => 'System',
         'light' => 'Light',
         'dark' => 'Dark',
-    ]
+    ],
 ];

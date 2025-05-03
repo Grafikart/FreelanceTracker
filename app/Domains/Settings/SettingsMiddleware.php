@@ -25,7 +25,7 @@ class SettingsMiddleware
         $user = $request->user();
         if ($user instanceof User) {
             Number::useLocale($user->locale);
-            CarbonImmutable::setLocale($user->locale);;
+            CarbonImmutable::setLocale($user->locale);
         } else {
             Number::useLocale(App::currentLocale());
             CarbonImmutable::setLocale(App::currentLocale());
@@ -33,5 +33,4 @@ class SettingsMiddleware
 
         return $next($request);
     }
-
 }

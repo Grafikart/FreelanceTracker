@@ -6,7 +6,7 @@ class I18nHelper
 {
     public static function currencies(): array
     {
-        return array_map(fn($currency) => [
+        return array_map(fn ($currency) => [
             'value' => $currency['code'],
             'label' => sprintf('%s - %s', $currency['name'], $currency['code']),
         ], config('i18n.currencies'));
@@ -447,7 +447,7 @@ class I18nHelper
 
     public static function dateFormats(): array
     {
-        return array_map(fn($format) => [
+        return array_map(fn ($format) => [
             'value' => $format,
             'label' => sprintf('%s (%s)', str_replace(['m', 'd', 'Y'], ['MM', 'DD', 'YYYY'], $format), now()->format($format)),
         ], [

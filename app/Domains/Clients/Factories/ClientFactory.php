@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ClientFactory extends Factory
 {
-
     protected $model = Client::class;
 
     /**
@@ -29,8 +28,7 @@ class ClientFactory extends Factory
         return [
             'name' => fake()->company(),
             'address' => fake()->address(),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
         ];
     }
-
 }
