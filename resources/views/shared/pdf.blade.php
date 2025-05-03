@@ -125,15 +125,13 @@
 <table style="width: 100%; height: 100px; border-collapse: collapse" class="invoice-header">
     <tr>
         <td colspan="2" style="vertical-align: top;">
-            <h1>{{ __('pdf.estimate') }} {{ $estimate->estimate_id }}</h1>
+            <h1>{{ __('pdf.estimate') }} {{ $estimate->accounting_id }}</h1>
         </td>
         <th style=" vertical-align: top;">{{ __('pdf.from') }}</th>
         <td style="white-space: nowrap;">
-            <h2>EURL Boyer Jonathan</h2>
+            <h2>{{ $estimate->user->company_name }}</h2>
             <p style="margin-top: 5px;">
-                Lorem ipsum dolor sit<br/>
-                amet, consectetur adipisicing elit<br/>
-                A cumque delectus, deleniti<br/>
+                {!! nl2br($estimate->user->company_address) !!}
             </p>
         </td>
     </tr>
@@ -147,9 +145,9 @@
             <p style="margin-top: 5px;">
                 {!! nl2br($estimate->client->address) !!}
             </p></td>
-        <th>{{ __('pdf.estimate_id') }}</th>
+        <th>{{ __('pdf.accounting_id') }}</th>
         <td style="width: 200px;">
-            <strong>{{ $estimate->estimate_id }}</strong>
+            <strong>{{ $estimate->accounting_id }}</strong>
         </td>
     </tr>
     <tr>

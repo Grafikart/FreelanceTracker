@@ -53,7 +53,7 @@
 }
 
 @plugin "daisyui/theme" {
-    name: "contrast";
+    name: "light";
     default: true;
     color-scheme: light;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Domains\Estimates\Requests;
 
-use App\Models\Estimate;
+use App\Domains\Estimates\Estimate;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -52,7 +52,7 @@ class EstimateFormRequest extends FormRequest
                 'required',
                 Rule::exists('clients', 'id')->where($ownedByUser),
             ],
-            'estimate_id' => ['required', 'numeric', 'min:1', Rule::unique('estimates')->where($ownedByUser)],
+            'accounting_id' => ['required', 'numeric', 'min:1', Rule::unique('estimates')->where($ownedByUser)],
             'created_at' => ['required', 'date', 'before_or_equal:today'],
             'label' => ['required', 'string', 'max:255'],
             'rows' => ['required', 'array'],
@@ -64,7 +64,7 @@ class EstimateFormRequest extends FormRequest
         ];
 
         if ($this->route()->parameter('estimate')) {
-            unset($rules['estimate_id']);
+            unset($rules['accounting_id']);
         }
 
         return $rules;

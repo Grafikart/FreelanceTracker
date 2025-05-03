@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Client;
-use App\Models\InvoiceRow;
+use App\Domains\Clients\Client;
+use App\Domains\Invoicing\InvoiceRow;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Estimate>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Domains\Estimates\Estimate>
  */
 class EstimateFactory extends Factory
 {
@@ -35,7 +35,7 @@ class EstimateFactory extends Factory
         }
         return [
             'label' => fake()->sentence(),
-            'estimate_id' => random_int(1, 100),
+            'accounting_id' => random_int(1, 100),
             'tax' => fake()->randomElement([0, 20]),
             'currency' => 'EUR',
             'action_at' => fake()->dateTimeBetween('-1 year', 'today'),

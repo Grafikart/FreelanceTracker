@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Domains\Clients\Client;
+use App\Domains\Estimates\Estimate;
+use App\Domains\Estimates\HasSettings;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +17,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasSettings;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +28,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company_name',
+        'company_address',
+        'timezone',
+        'date_format',
+        'currency',
+        'locale',
+        'theme',
+        'hourly_rate',
+        'hours_per_week',
     ];
 
     /**
@@ -57,5 +70,11 @@ class User extends Authenticatable
     public function estimates(): HasMany
     {
         return $this->hasMany(Estimate::class);
+    }
+
+    public string $avatar {
+        get {
+            return sprintf("https://gravatar.com/avatar/%s", hash('sha256', strtolower(trim($this->email))));
+        }
     }
 }

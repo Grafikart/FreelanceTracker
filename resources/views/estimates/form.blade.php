@@ -22,13 +22,12 @@
 
 
         <div class="grid grid-cols-2 gap-x-6 gap-y-2">
-
             <x-form.field
-                name="estimate_id"
+                name="accounting_id"
                 :disabled="$estimate->id"
-                :value="$estimate->estimate_id"
-                label="{{ __('estimate.estimate_id') }}"
-                placeholder="{{ __('estimate.estimate_id') }}"
+                :value="$estimate->accounting_id"
+                label="{{ __('estimate.accounting_id') }}"
+                placeholder="{{ __('estimate.accounting_id') }}"
             />
 
             <x-form.field
@@ -65,7 +64,7 @@
 
             <x-form.field
                 name="currency"
-                :options="\App\Service\I18n::currencies()"
+                :options="\App\Infrastructure\I18n\I18nHelper::currencies()"
                 :value="$estimate->currency"
                 label="{{ __('estimate.currency') }}"
                 placeholder="{{ __('estimate.currency') }}"

@@ -5,7 +5,7 @@ return [
     'to' => 'To',
     'label' => 'Description',
     'created_at' => 'Issue Date',
-    'estimate_id' => 'Estimate Id',
+    'accounting_id' => 'Estimate Id',
     'price' => 'Price',
     'total' => 'Total',
     'subtotal' => 'Subtotal',

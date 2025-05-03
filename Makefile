@@ -13,6 +13,7 @@ lint: ## Format the code and generates new helpers
 	php artisan ide-helper:meta
 	php artisan ide-helper:models -M
 	./vendor/bin/phpstan analyse --memory-limit=2G
+	bun run format
 
 dev: ## Start dev server
 	parallel -j 2 --line-buffer ::: "php artisan serve" "bun run dev"

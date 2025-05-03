@@ -12,4 +12,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('estimates/{estimate}/state', [App\Http\Controllers\EstimateController::class, 'state'])->name('estimates.state');
 
     Route::get('settings', [SettingsController::class, 'index'])->name('settings');
+    Route::post('settings', [SettingsController::class, 'store']);
 });

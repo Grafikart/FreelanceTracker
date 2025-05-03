@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('currency')->default('EUR');
+
+            \App\Domains\Settings\SettingFields::forUser($table);
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,7 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Estimates;
 
+use App\Domains\Clients\Client;
+use App\Models\IdeHelperEstimate;
+use App\Domains\Invoicing\InvoiceRow;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,15 +20,15 @@ class Estimate extends Model
 
     use HasFactory;
 
-    const STATUS_DRAFT = 0;
+    const int STATUS_DRAFT = 0;
 
-    const STATUS_APPROVED = 1;
+    const int STATUS_APPROVED = 1;
 
-    const STATUS_REJECTED = -1;
+    const int STATUS_REJECTED = -1;
 
-    const STATUS_SENT = 2;
+    const int STATUS_SENT = 2;
 
-    const STATUS_OPENED = 3;
+    const int STATUS_OPENED = 3;
 
     protected $fillable = [
         'label',
@@ -77,16 +81,16 @@ class Estimate extends Model
     {
         $estimateId = 1;
         $lastEstimate = self::where('user_id', $user->id)
-            ->orderBy('estimate_id', 'desc')
+            ->orderBy('accounting_id', 'desc')
             ->first();
         if ($lastEstimate) {
-            $estimateId = $lastEstimate->estimate_id + 1;
+            $estimateId = $lastEstimate->accounting_id + 1;
         }
-        return (new static())->forceFill([
+        return (new self())->forceFill([
             'user_id' => $user->id,
             'currency' => $user->currency,
             'created_at' => now(),
-            'estimate_id' => $estimateId,
+            'accounting_id' => $estimateId,
             'tax' => $user->tax,
             'rows' => collect([]),
         ]);

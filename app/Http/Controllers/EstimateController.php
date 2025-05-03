@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EstimateFormRequest;
-use App\Http\Requests\EstimateStateFormRequest;
-use App\Models\Client;
-use App\Models\Estimate;
-use App\Models\InvoiceRow;
+use App\Domains\Estimates\Requests\EstimateFormRequest;
+use App\Domains\Estimates\Requests\EstimateStateFormRequest;
+use App\Domains\Clients\Client;
+use App\Domains\Estimates\Estimate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,11 +23,12 @@ class EstimateController extends Controller
             ->user()
             ->estimates()
             ->with('client')
-            ->when($tab === 'open', fn ($query) => $query->open())
+            ->when($tab === 'open', fn($query) => $query->open())
             ->orderByDesc('created_at');
         $estimates = $tab === 'open' ? $builder->get() : $builder->paginate(20);
 
         return view('estimates.index', [
+            'user' => $this->user(),
             'estimates' => $estimates,
             'tab' => $tab,
             'count' => $tab === 'open' ? $estimates->count() : $request->user()->estimates()->open()->count(),

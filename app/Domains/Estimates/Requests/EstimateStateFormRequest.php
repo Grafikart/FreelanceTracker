@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Domains\Estimates\Requests;
 
-use App\Models\Estimate;
+use App\Domains\Estimates\Estimate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
  * Update estimate state
- * @property Estimate $estimate
+ * @property \App\Domains\Estimates\Estimate $estimate
  */
 class EstimateStateFormRequest extends FormRequest
 {

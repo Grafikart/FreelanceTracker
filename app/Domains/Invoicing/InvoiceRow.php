@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Invoicing;
 
 class InvoiceRow
 {
@@ -21,7 +21,7 @@ class InvoiceRow
         $this->price = $data['price'];
     }
 
-    public string $total {
+    public int $total {
         get {
             return $this->price * $this->quantity;
         }

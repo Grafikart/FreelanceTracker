@@ -32,7 +32,7 @@
             role="tab"
             class="tab"
             @if($tab === 'all')
-            aria-selected="true"
+                aria-selected="true"
             @endif
         >{{ __('estimate.all') }}</a>
     </div>
@@ -41,55 +41,55 @@
     <div class="overflow-x-auto -mx-4 mt-4">
         <table class="table table-zebra" x-data>
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>{{ __('estimate.client') }}</th>
-                    <th>{{ __('estimate.state') }}</th>
-                    <th>{{ __('estimate.created_at') }}</th>
-                    <th class="text-end">{{ __('estimate.total') }}</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>{{ __('estimate.client') }}</th>
+                <th>{{ __('estimate.state') }}</th>
+                <th>{{ __('estimate.created_at') }}</th>
+                <th class="text-end">{{ __('estimate.total') }}</th>
+            </tr>
             </thead>
             <tbody>
             @foreach($estimates as $estimate)
-            <tr x-link="{{ route('estimates.show', $estimate) }}" class="hover:bg-base-300">
-                <td>
-                    {{ $estimate->estimate_id }}
-                </td>
-                <td>
-                    <strong class="text-base-content">{{ $estimate->client->name }}</strong><br/>
-                    <span class="text-sm"> {{  $estimate->label }}</span>
-                </td>
-                <td>
-                    @switch($estimate->state)
-                        @case(App\Models\Estimate::STATUS_DRAFT)
-                            <span class="badge badge-soft bg-base-300">{{ __('estimate.status.draft') }}</span>
-                            @break
-                        @case(App\Models\Estimate::STATUS_SENT)
-                            <span class="badge badge-soft badge-info">{{ __('estimate.status.sent') }}</span>
-                            @break
-                        @case(App\Models\Estimate::STATUS_APPROVED)
-                            <span class="badge badge-soft badge-success">{{ __('estimate.status.approved') }}</span>
-                            @break
-                        @case(App\Models\Estimate::STATUS_REJECTED)
-                            <span class="badge badge-soft badge-error">{{ __('estimate.status.rejected') }}</span>
-                            @break
-                        @default
+                <tr x-link="{{ route('estimates.show', $estimate) }}" class="hover:bg-base-300">
+                    <td>
+                        {{ $estimate->accounting_id }}
+                    </td>
+                    <td>
+                        <strong class="text-base-content">{{ $estimate->client->name }}</strong><br/>
+                        <span class="text-sm"> {{  $estimate->label }}</span>
+                    </td>
+                    <td>
+                        @switch($estimate->state)
+                            @case(App\Domains\Estimates\Estimate::STATUS_DRAFT)
+                                <span class="badge badge-soft bg-base-300">{{ __('estimate.status.draft') }}</span>
+                                @break
+                            @case(App\Domains\Estimates\Estimate::STATUS_SENT)
+                                <span class="badge badge-soft badge-info">{{ __('estimate.status.sent') }}</span>
+                                @break
+                            @case(App\Domains\Estimates\Estimate::STATUS_APPROVED)
+                                <span class="badge badge-soft badge-success">{{ __('estimate.status.approved') }}</span>
+                                @break
+                            @case(App\Domains\Estimates\Estimate::STATUS_REJECTED)
+                                <span class="badge badge-soft badge-error">{{ __('estimate.status.rejected') }}</span>
+                                @break
+                            @default
 
-                    @endswitch
-                </td>
-                <td>
-                    {{ $estimate->created_at->format(config('i18n.date_format')) }}
-                </td>
-                <td class="text-end">
-                    @money($estimate->total, $estimate->currency)
-                </td>
-            </tr>
+                        @endswitch
+                    </td>
+                    <td>
+                        {{ $user->formatDate($estimate->created_at) }}
+                    </td>
+                    <td class="text-end">
+                        @money($estimate->total, $estimate->currency)
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>
 
         @if($tab === 'all')
-        {{ $estimates->links() }}
+            {{ $estimates->links() }}
         @endif
     </div>
 

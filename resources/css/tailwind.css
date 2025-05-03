@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -7,10 +7,10 @@
 
 /** Dark Variant with theme & system mode **/
 @variant dark {
-    &:where([data-theme="dark"] *, [data-theme="dim"] *, [data-theme="material-dark"] *) {
+    &:where([data-theme="dark"] *) {
         @slot;
     }
-    &:not([data-theme="light"] *, [data-theme="contrast"] *, [data-theme="material"] *) {
+    &:not([data-theme="light"] *) {
         @media (prefers-color-scheme: dark) {
             @slot;
         }

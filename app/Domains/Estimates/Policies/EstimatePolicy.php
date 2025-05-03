@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace App\Domains\Estimates\Policies;
 
-use App\Models\Client;
+use App\Domains\Estimates\Estimate;
 use App\Models\User;
 
-class ClientPolicy
+class EstimatePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,9 +18,9 @@ class ClientPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Client $client): bool
+    public function view(User $user, Estimate $estimate): bool
     {
-        return $client->user_id === $user->id;
+        return $estimate->user_id === $user->id;
     }
 
     /**
@@ -34,32 +34,32 @@ class ClientPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Client $client): bool
+    public function update(User $user, Estimate $estimate): bool
     {
-        return $this->view($user, $client);
+        return $this->view($user, $estimate);
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Client $client): bool
+    public function delete(User $user, Estimate $estimate): bool
     {
-        return $this->view($user, $client);
+        return $this->view($user, $estimate);
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Client $client): bool
+    public function restore(User $user, Estimate $estimate): bool
     {
-        return $this->view($user, $client);
+        return $this->view($user, $estimate);
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Client $client): bool
+    public function forceDelete(User $user, Estimate $estimate): bool
     {
-        return $this->view($user, $client);
+        return $this->view($user, $estimate);
     }
 }

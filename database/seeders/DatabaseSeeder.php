@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Estimate;
+use App\Domains\Estimates\Estimate;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

@@ -12,7 +12,7 @@ return [
     'client' => 'Client',
     'created_at' => 'Issued at',
     'status' => 'Status',
-    'estimate_id' => 'Estimate ID',
+    'accounting_id' => 'Estimate ID',
     'label' => 'Subject',
     'total' => 'Total',
     'client_id' => 'Client',
