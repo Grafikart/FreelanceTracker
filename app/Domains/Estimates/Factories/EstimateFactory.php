@@ -27,7 +27,7 @@ class EstimateFactory extends Factory
             $rows->push(new InvoiceRow([
                 'label' => fake()->sentence(),
                 'quantity' => random_int(1, 10),
-                'price' => random_int(1, 100),
+                'price' => random_int(10_00, 100_00),
             ]));
         }
 

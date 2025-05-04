@@ -221,20 +221,27 @@
                 </strong>
             </td>
         </tr>
-        <tr>
-            <td colspan="3">{{ __("pdf.subtotal") }}</td>
-            <td>
-                <strong>
-                    @money($estimate->total_tax, $estimate->currency)
-                </strong>
-            </td>
-        </tr>
+        @if ($estimate->tax > 0)
+            <tr>
+                <td colspan="3">
+                    {{ __("pdf.tax") }} ({{ $estimate->tax }}%)
+                </td>
+                <td>
+                    <strong>
+                        @money($estimate->total_tax, $estimate->currency)
+                    </strong>
+                </td>
+            </tr>
+        @endif
+
         <tr>
             <td colspan="3">
                 <strong>{{ __("pdf.total") }}</strong>
             </td>
             <td>
-                <strong>@money($estimate->total)</strong>
+                <strong>
+                    @money($estimate->total, $estimate->currency)
+                </strong>
             </td>
         </tr>
     </tfoot>
