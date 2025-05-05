@@ -16,4 +16,9 @@ window.Alpine = Alpine;
 Alpine.start();
 
 htmx.config.defaultSwapStyle = "outerHTML";
-htmx.config.responseHandling = [{ code: "204", swap: true, error: false }];
+htmx.config.responseHandling = [
+    { code: "[234]..", swap: true },
+    { code: "[4]..", swap: true, error: true },
+    { code: "[5]..", swap: false, error: true },
+    { code: "...", swap: false },
+];
