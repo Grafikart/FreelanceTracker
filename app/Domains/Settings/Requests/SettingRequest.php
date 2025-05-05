@@ -2,9 +2,13 @@
 
 namespace App\Domains\Settings\Requests;
 
+use App\Domains\Settings\Theme;
 use App\Infrastructure\I18n\I18nHelper;
+use App\Infrastructure\I18n\MoneyFormat;
+use App\Infrastructure\I18n\NumberFormat;
 use App\Infrastructure\Validation\SelectOptionValidator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SettingRequest extends FormRequest
 {
@@ -24,7 +28,9 @@ class SettingRequest extends FormRequest
             'locale' => ['required', new SelectOptionValidator(I18nHelper::locales())],
             'hourly_rate' => ['required', 'numeric', 'min:0'],
             'hours_per_week' => ['required', 'numeric', 'integer', 'min:0'],
-            'theme' => ['required', new SelectOptionValidator(I18nHelper::themes())],
+            'theme' => ['required', Rule::enum(Theme::class)],
+            'currency_format' => ['required', Rule::enum(MoneyFormat::class)],
+            'number_format' => ['required', Rule::enum(NumberFormat::class)],
         ];
     }
 }

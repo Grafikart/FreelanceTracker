@@ -16,6 +16,9 @@
 @php
     $class = [$inputClass, "input" => $icon === null];
     $wrapperClass = $layout === "horizontal" ? "flex gap-4" : "space-y-1";
+    if ($options && is_string($options)) {
+        $options = array_map(fn ($case) => ["value" => $case->value, "label" => $case->label()], $options::cases());
+    }
 @endphp
 
 <fieldset {{ $attributes->class($wrapperClass) }}>
@@ -27,9 +30,13 @@
     <div @class([$layout === "vertical" ? "w-full" : "w-3/4"])>
         <label @class(["input" => $icon])>
             @if ($icon)
-                <span
-                    class="text-base-content/80 iconify {{ $icon }} size-5"
-                ></span>
+                @if (strpos($icon, "--") === false)
+                    <span class="text-base-content/80">{{ $icon }}</span>
+                @else
+                    <span
+                        class="text-base-content/80 iconify {{ $icon }} size-5"
+                    ></span>
+                @endif
             @endif
 
             @if ($type === "textarea")

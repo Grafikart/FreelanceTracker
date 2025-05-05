@@ -2,6 +2,8 @@
 
 namespace App\Domains\Settings;
 
+use App\Infrastructure\I18n\MoneyFormat;
+use App\Infrastructure\I18n\NumberFormat;
 use Illuminate\Database\Schema\Blueprint;
 
 class SettingFields
@@ -26,5 +28,7 @@ class SettingFields
         $table->string('locale')->default('en');
         $table->string('date_format')->default('d/m/Y');
         $table->string('theme')->default('system');
+        $table->string('currency_format')->default(MoneyFormat::AFTER->value);
+        $table->string('number_format')->default(NumberFormat::SPACE->value);
     }
 }

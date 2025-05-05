@@ -4,76 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fc1d60aa74a21b5e1c97580d0148726",
+    "content-hash": "cb9c635e4535469151c36b5ec3834643",
     "packages": [
-        {
-            "name": "akaunting/laravel-money",
-            "version": "6.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/akaunting/laravel-money.git",
-                "reference": "5dca81f4297b99f8dbf0f4a6bb4d45c56acbd76a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/akaunting/laravel-money/zipball/5dca81f4297b99f8dbf0f4a6bb4d45c56acbd76a",
-                "reference": "5dca81f4297b99f8dbf0f4a6bb4d45c56acbd76a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^10.0|^11.0|^12",
-                "illuminate/support": "^10.0|^11.0|^12",
-                "illuminate/validation": "^10.0|^11.0|^12",
-                "illuminate/view": "^10.0|^11.0|^12",
-                "php": "^8.2",
-                "vlucas/phpdotenv": "^5.4.1"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^8.0|^9.0|^10",
-                "phpunit/phpunit": "^10.5|^11.0",
-                "vimeo/psalm": "^6.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Akaunting\\Money\\Provider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Akaunting\\Money\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Denis Duliçi",
-                    "email": "info@akaunting.com",
-                    "homepage": "https://akaunting.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Currency formatting and conversion package for Laravel",
-            "keywords": [
-                "convert",
-                "currency",
-                "format",
-                "laravel",
-                "money"
-            ],
-            "support": {
-                "source": "https://github.com/akaunting/laravel-money/tree/6.0.2"
-            },
-            "time": "2025-02-22T11:28:38+00:00"
-        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "v3.0.1",

@@ -16,12 +16,14 @@ class TaskController extends Controller
         Gate::authorize('viewAny', Task::class);
         $tasks = $request->user()->tasks()->orderByDesc('created_at');
 
-        if ($request->query('state') === 'deleted') {
+        $state = $request->query('state');
+        if ($state === 'deleted') {
             $tasks = $tasks->onlyTrashed(); // @phpstan-ignore-line scope is not recognized
         }
 
         return view('reporting.tasks.index', [
             'task' => new Task,
+            'state' => $state,
             'tasks' => $tasks->get(),
             'title' => __('task.list_title'),
         ]);
@@ -68,7 +70,11 @@ class TaskController extends Controller
     public function destroy(Task $task): Response
     {
         Gate::authorize('delete', $task);
-        $task->delete();
+        if ($task->trashed()) {
+            $task->restore();
+        } else {
+            $task->delete();
+        }
 
         return new Response(null, Response::HTTP_NO_CONTENT);
     }

@@ -3,6 +3,8 @@
 return [
     // Page titles
     'list_title' => 'Tasks',
+    'deleted' => 'Deleted tasks',
+    'all' => 'All tasks',
 
     // Attributes
     'name' => 'Name',
@@ -11,13 +13,6 @@ return [
     'create' => 'Create Task',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'restore' => 'Restore',
     'save' => 'Save Task',
-
-    // Messages
-    'created' => 'Task has been created successfully!',
-    'updated' => 'Task has been updated successfully!',
-    'deleted' => 'Task has been deleted successfully!',
-    'no_tasks' => 'No tasks found.',
-    'confirm_delete' => 'Are you sure you want to delete this task?',
-    'validation_error' => 'Please fix the following errors:',
 ];

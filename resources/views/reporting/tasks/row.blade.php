@@ -10,16 +10,29 @@
                 <span class="iconify lucide--pen"></span>
                 {{ __("task.edit") }}
             </button>
-            <button
-                hx-delete="{{ route("tasks.destroy", $task) }}"
-                hx-target="#task-{{ $task->id }}"
-                hx-swap="delete"
-                hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
-                class="btn btn-soft btn-sm btn-error"
-            >
-                <span class="iconify lucide--trash"></span>
-                {{ __("task.delete") }}
-            </button>
+            @if ($task->trashed())
+                <button
+                    @htmxCsrf()
+                    hx-delete="{{ route("tasks.destroy", $task) }}"
+                    hx-target="#task-{{ $task->id }}"
+                    hx-swap="delete"
+                    class="btn btn-soft btn-sm btn-warning"
+                >
+                    <span class="iconify lucide--list-restart"></span>
+                    {{ __("task.restore") }}
+                </button>
+            @else
+                <button
+                    @htmxCsrf()
+                    hx-delete="{{ route("tasks.destroy", $task) }}"
+                    hx-target="#task-{{ $task->id }}"
+                    hx-swap="delete"
+                    class="btn btn-soft btn-sm btn-error"
+                >
+                    <span class="iconify lucide--trash"></span>
+                    {{ __("task.delete") }}
+                </button>
+            @endif
         </div>
     </td>
 </tr>

@@ -203,10 +203,12 @@
             <tr>
                 <td>{{ $row->label }}</td>
                 <td>{{ $row->quantity }}</td>
-                <td>@money($row->price, $estimate->currency)</td>
+                <td>
+                    @money($row->price, $estimate->currency, $estimate->user)
+                </td>
                 <td>
                     <strong>
-                        @money($row->total, $estimate->currency)
+                        @money($row->total, $estimate->currency, $estimate->user)
                     </strong>
                 </td>
             </tr>
@@ -217,7 +219,7 @@
             <td colspan="3">{{ __("pdf.subtotal") }}</td>
             <td>
                 <strong>
-                    @money($estimate->total_price, $estimate->currency)
+                    @money($estimate->total_price, $estimate->currency, $estimate->user)
                 </strong>
             </td>
         </tr>
@@ -228,7 +230,7 @@
                 </td>
                 <td>
                     <strong>
-                        @money($estimate->total_tax, $estimate->currency)
+                        @money($estimate->total_tax, $estimate->currency, $estimate->user)
                     </strong>
                 </td>
             </tr>
@@ -240,7 +242,7 @@
             </td>
             <td>
                 <strong>
-                    @money($estimate->total, $estimate->currency)
+                    @money($estimate->total, $estimate->currency, $estimate->user)
                 </strong>
             </td>
         </tr>

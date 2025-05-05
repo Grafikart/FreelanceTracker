@@ -18,6 +18,7 @@
                     label="{{ __('settings.company_name') }}"
                     placeholder="{{ __('settings.company_name') }}"
                 />
+
                 <x-form.field
                     layout="vertical"
                     x-grow
@@ -95,10 +96,28 @@
                 <x-form.field
                     layout="vertical"
                     name="theme"
-                    :options="\App\Infrastructure\I18n\I18nHelper::themes()"
-                    :value="$user->theme"
+                    :options="\App\Domains\Settings\Theme::class"
+                    :value="$user->theme->value"
                     label="{{ __('settings.theme') }}"
                     placeholder="{{ __('settings.theme') }}"
+                />
+
+                <x-form.field
+                    layout="vertical"
+                    name="currency_format"
+                    :options="\App\Infrastructure\I18n\MoneyFormat::class"
+                    :value="$user->currency_format->value"
+                    label="{{ __('settings.currency_format') }}"
+                    placeholder="{{ __('settings.currency_format') }}"
+                />
+
+                <x-form.field
+                    layout="vertical"
+                    name="number_format"
+                    :options="\App\Infrastructure\I18n\NumberFormat::class"
+                    :value="$user->number_format->value"
+                    label="{{ __('settings.number_format') }}"
+                    placeholder="{{ __('settings.number_format') }}"
                 />
             </div>
         </div>

@@ -10,26 +10,14 @@ return [
 
     // Columns
     'client' => 'Client',
-    'created_at' => 'Issued at',
-    'accounting_id' => 'Estimate ID',
-    'label' => 'Subject',
-    'total' => 'Total',
-    'client_id' => 'Client',
-    'tax' => 'Tax',
-    'state' => 'Status',
-    'currency' => 'Currency',
-    'footer' => 'Notes',
-    'subtotal' => 'Subtotal',
-    'open' => 'Open',
-    'all' => 'All projects',
-    'invalid_state' => 'Invalid state',
+    'name' => 'Project name',
+    'budget' => 'Budget',
 
     // Status
     'status' => [
         'draft' => 'Draft',
-        'sent' => 'Sent',
-        'approved' => 'Approved',
-        'rejected' => 'Rejected',
+        'active' => 'Active',
+        'inactive' => 'Inactive',
     ],
 
     // Buttons

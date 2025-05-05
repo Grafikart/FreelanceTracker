@@ -10,6 +10,8 @@ return [
     'hours_per_week' => 'Working hours per week',
     'timezone' => 'Timezone',
     'date_format' => 'Date format',
+    'currency_format' => 'Currency format',
+    'number_format' => 'Number format',
     'currency' => 'Currency',
     'locale' => 'Language',
     'updated' => 'Settings saved successfully!',

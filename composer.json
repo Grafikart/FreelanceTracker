@@ -7,7 +7,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "akaunting/laravel-money": "^6.0",
         "barryvdh/laravel-dompdf": "^3.1",
         "laravel/fortify": "^1.25",
         "laravel/framework": "^12.0",

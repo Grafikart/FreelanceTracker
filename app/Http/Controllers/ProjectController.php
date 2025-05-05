@@ -27,4 +27,20 @@ class ProjectController extends Controller
             'title' => __('project.list_title'),
         ]);
     }
+
+    public function create(): View
+    {
+        Gate::authorize('create', Project::class);
+
+        $user = $this->user();
+
+        return view('reporting.projects.form', [
+            'project' => Project::makeFromUser($user),
+            'clients' => $user->clients()->pluck('name', 'id'),
+            'action' => route('projects.store'),
+            'title' => __('project.create_title'),
+        ]);
+    }
+
+    public function store() {}
 }

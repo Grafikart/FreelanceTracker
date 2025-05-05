@@ -2,7 +2,6 @@
 
 namespace App\Domains\Settings;
 
-use Akaunting\Money\Money;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Closure;
@@ -25,7 +24,6 @@ class SettingsMiddleware
     {
         $user = $request->user();
         if ($user instanceof User) {
-            Money::setLocale($user->locale);
             Number::useLocale($user->locale);
             CarbonImmutable::setLocale($user->locale);
         } else {
