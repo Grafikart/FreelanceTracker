@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Domains\Clients\Client;
 use App\Domains\Estimates\Estimate;
 use App\Domains\Estimates\HasSettings;
+use App\Domains\Reporting\Models\Project;
+use App\Domains\Reporting\Models\Task;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,6 +63,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Relations
+     */
     public function clients(): HasMany
     {
         return $this->hasMany(Client::class);
@@ -69,6 +74,16 @@ class User extends Authenticatable
     public function estimates(): HasMany
     {
         return $this->hasMany(Estimate::class);
+    }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
     }
 
     public string $avatar {

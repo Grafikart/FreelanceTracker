@@ -24,6 +24,7 @@
     "dependencies": {
         "@alpinejs/sort": "^3.14.9",
         "alpinejs": "^3.14.9",
+        "htmx.org": "2.0.4",
         "prettier-plugin-tailwindcss": "^0.6.11"
     }
 }

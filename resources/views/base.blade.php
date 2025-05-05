@@ -51,7 +51,10 @@
         @auth
             <header class="navbar bg-primary text-primary-content/70 shadow-sm">
                 <div class="container flex items-center">
-                    <a href="" class="btn btn-ghost">
+                    <a
+                        href=""
+                        @class(["btn btn-ghost", "menu-active" => request()->routeIs("dashboard")])
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="size-[1.2em]"
@@ -66,10 +69,18 @@
                     <ul class="menu menu-horizontal -ml-3">
                         <li>
                             <a
-                                href="{{ route("dashboard") }}"
-                                class="{{ request()->routeIs("dashboard") ? "menu-active" : "" }}"
+                                href="{{ route("projects.index") }}"
+                                class="{{ request()->routeIs("projects.*") ? "menu-active" : "" }}"
                             >
-                                {{ __("menu.dashboard") }}
+                                {{ __("menu.projects") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route("clients.index") }}"
+                                class="{{ request()->routeIs("clients.*") ? "menu-active" : "" }}"
+                            >
+                                {{ __("menu.clients") }}
                             </a>
                         </li>
                         <li>
@@ -160,6 +171,8 @@
                 </div>
             </header>
         @endauth
+
+        @yield("root")
 
         <div class="container py-8">
             @yield("body")
