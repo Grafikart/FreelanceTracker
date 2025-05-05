@@ -2,9 +2,11 @@
 
 namespace App\Domains\Reporting\Models;
 
+use App\Domains\Clients\Client;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @mixin IdeHelperProject
@@ -19,6 +21,14 @@ class Project extends Model
         'rate',
         'currency',
     ];
+
+    /**
+     * Relations
+     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
 
     /**
      * Scopes
@@ -36,7 +46,7 @@ class Project extends Model
         $project = self::make([
             'user_id' => $user->id,
             'budget' => $user->budget,
-            'rate' => $user->rate,
+            'rate' => $user->hourly_rate,
             'currency' => $user->currency
         ]);
         $project->user = $user;

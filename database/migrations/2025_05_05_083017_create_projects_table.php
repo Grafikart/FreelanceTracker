@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('budget')->unsigned()->default(0);
             $table->integer('rate')->unsigned()->default(0);
+            $table->string('currency')->default('EUR');
             $table->timestamp('archived_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

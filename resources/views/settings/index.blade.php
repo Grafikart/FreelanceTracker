@@ -34,7 +34,9 @@
                     type="number"
                     layout="vertical"
                     name="hourly_rate"
-                    :value="$user->hourly_rate"
+                    inputClass="w-45"
+                    iconAfter="{{ (new \App\Infrastructure\I18n\MoneyFormatter)->symbol($user->currency) }}/{{ __('project.hour') }}"
+                    :value="$user->hourly_rate / 100"
                     label="{{ __('settings.hourly_rate') }}"
                     placeholder="{{ __('settings.hourly_rate') }}"
                 />
@@ -42,10 +44,12 @@
                 <x-form.field
                     type="number"
                     layout="vertical"
+                    inputClass="w-45"
                     name="hours_per_week"
+                    iconAfter="{{  __('settings.hours_per_week') }}"
                     :value="$user->hours_per_week"
-                    label="{{ __('settings.hours_per_week') }}"
-                    placeholder="{{ __('settings.hours_per_week') }}"
+                    label="{{ __('settings.working_hours') }}"
+                    placeholder="{{ __('settings.working_hours') }}"
                 />
             </div>
         </div>
@@ -105,7 +109,7 @@
                 <x-form.field
                     layout="vertical"
                     name="currency_format"
-                    :options="\App\Infrastructure\I18n\MoneyFormat::class"
+                    :options="\App\Infrastructure\I18n\CurrencyFormat::class"
                     :value="$user->currency_format->value"
                     label="{{ __('settings.currency_format') }}"
                     placeholder="{{ __('settings.currency_format') }}"

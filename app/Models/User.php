@@ -8,7 +8,7 @@ use App\Domains\Estimates\HasSettings;
 use App\Domains\Reporting\Models\Project;
 use App\Domains\Reporting\Models\Task;
 use App\Domains\Settings\Theme;
-use App\Infrastructure\I18n\MoneyFormat;
+use App\Infrastructure\I18n\CurrencyFormat;
 use App\Infrastructure\I18n\NumberFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -65,7 +65,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'currency_format' => MoneyFormat::class,
+            'currency_format' => CurrencyFormat::class,
             'number_format' => NumberFormat::class,
             'theme' => Theme::class,
         ];

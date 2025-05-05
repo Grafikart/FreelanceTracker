@@ -11,7 +11,7 @@ class I18nServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('money', function (string $expression) {
-            return sprintf("<?= %s::format(%s) ?>", MoneyFormatter::class, $expression);
+            return sprintf("<?= new %s()->format(%s) ?>", MoneyFormatter::class, $expression);
         });
     }
 }

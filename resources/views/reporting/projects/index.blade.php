@@ -18,25 +18,31 @@
         <table class="table-zebra table" x-data>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>{{ __("project.name") }}</th>
-                    <th>{{ __("project.client") }}</th>
-                    <th></th>
+                    <th>{{ __("project.budget") }}</th>
+                    <th>{{ __("project.budget_spent") }}</th>
+                    <th class="w-5">{{ __("form.actions") }}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($projects as $project)
-                    <tr
-                        x-link="{{ route("projects.show", $project) }}"
-                        class="hover:bg-base-300"
-                    >
+                    <tr class="hover:bg-base-300">
                         <td>
-                            {{ $project->name_id }}
+                            {{ $project->name }}
                         </td>
                         <td>
-                            {{ $project->client->name }}
+                            @money($project->budget, $project->currency)
                         </td>
-                        <td></td>
+                        <td>-</td>
+                        <td>
+                            <a
+                                href="{{ route("projects.edit", $project) }}"
+                                class="btn btn-soft btn-sm btn-neutral"
+                            >
+                                <span class="iconify lucide--pen"></span>
+                                {{ __("project.edit") }}
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

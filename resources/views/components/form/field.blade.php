@@ -11,14 +11,22 @@
     "rows" => 6,
     "disabled" => false,
     "help" => null,
+    "iconAfter" => null,
 ])
 
 @php
-    $class = [$inputClass, "input" => $icon === null];
     $wrapperClass = $layout === "horizontal" ? "flex gap-4" : "space-y-1";
+    if ($options && $options instanceof \Illuminate\Support\Collection) {
+        $options = $options->toArray();
+    }
     if ($options && is_string($options)) {
         $options = array_map(fn ($case) => ["value" => $case->value, "label" => $case->label()], $options::cases());
+    } elseif ($options && ! ($options[array_key_first($options)]["label"] ?? null)) {
+        $options = collect($options)
+            ->map(fn ($value, $key) => ["value" => $key, "label" => $value])
+            ->toArray();
     }
+    $hasIcon = $icon ?? ($iconAfter ?? false);
 @endphp
 
 <fieldset {{ $attributes->class($wrapperClass) }}>
@@ -28,7 +36,7 @@
         {{ $label }}
     </div>
     <div @class([$layout === "vertical" ? "w-full" : "w-3/4"])>
-        <label @class(["input" => $icon])>
+        <label @class($hasIcon ? [$inputClass, "input"] : $inputClass)>
             @if ($icon)
                 @if (strpos($icon, "--") === false)
                     <span class="text-base-content/80">{{ $icon }}</span>
@@ -52,7 +60,7 @@
             @elseif ($options)
                 <select
                     @disabled($disabled)
-                    class="select w-full"
+                    class="select {{ $hasIcon ? "" : $inputClass }} w-full"
                     name="{{ $name }}"
                 >
                     @foreach ($options as $option)
@@ -66,13 +74,23 @@
                 </select>
             @else
                 <input
-                    @class($class)
+                    @class($hasIcon ? null : [$inputClass, "input"])
                     @disabled($disabled)
                     placeholder="{{ $placeholder }}"
                     type="{{ $type }}"
                     name="{{ $name }}"
                     value="{{ old($name, $value) }}"
                 />
+            @endif
+
+            @if ($iconAfter)
+                @if (strpos($iconAfter, "--") === false)
+                    <span class="text-base-content/80">{{ $iconAfter }}</span>
+                @else
+                    <span
+                        class="text-base-content/80 iconify {{ $iconAfter }} size-5"
+                    ></span>
+                @endif
             @endif
         </label>
         @if ($help)

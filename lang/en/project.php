@@ -12,6 +12,10 @@ return [
     'client' => 'Client',
     'name' => 'Project name',
     'budget' => 'Budget',
+    'hour' => 'Hour',
+    'rate' => 'Rate',
+    'budget_spent' => 'Spent',
+    'currency' => 'Currency',
 
     // Status
     'status' => [

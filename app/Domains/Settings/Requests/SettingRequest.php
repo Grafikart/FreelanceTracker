@@ -4,7 +4,7 @@ namespace App\Domains\Settings\Requests;
 
 use App\Domains\Settings\Theme;
 use App\Infrastructure\I18n\I18nHelper;
-use App\Infrastructure\I18n\MoneyFormat;
+use App\Infrastructure\I18n\CurrencyFormat;
 use App\Infrastructure\I18n\NumberFormat;
 use App\Infrastructure\Validation\SelectOptionValidator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,8 +29,17 @@ class SettingRequest extends FormRequest
             'hourly_rate' => ['required', 'numeric', 'min:0'],
             'hours_per_week' => ['required', 'numeric', 'integer', 'min:0'],
             'theme' => ['required', Rule::enum(Theme::class)],
-            'currency_format' => ['required', Rule::enum(MoneyFormat::class)],
+            'currency_format' => ['required', Rule::enum(CurrencyFormat::class)],
             'number_format' => ['required', Rule::enum(NumberFormat::class)],
+        ];
+    }
+
+    public function validated($key = null, $default = null)
+    {
+        $data = parent::validated($key, $default);
+        return [
+            ...$data,
+            'hourly_rate' => $data['hourly_rate'] * 100,
         ];
     }
 }

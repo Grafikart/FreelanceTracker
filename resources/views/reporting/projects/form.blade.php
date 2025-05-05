@@ -1,9 +1,7 @@
 @extends("base")
 
 @section("body")
-    <div class="flex justify-between">
-        <h1 class="h1">{{ $title }}</h1>
-    </div>
+    <h1 class="h1">{{ $title }}</h1>
 
     @include("shared.form-errors")
 
@@ -30,11 +28,32 @@
         />
 
         <x-form.field
+            name="currency"
+            :options="\App\Infrastructure\I18n\I18nHelper::currencies()"
+            :value="$project->currency"
+            label="{{ __('project.currency') }}"
+            placeholder="{{ __('project.currency') }}"
+        />
+
+        <x-form.field
             name="budget"
-            :icon="$project->currency"
-            :value="$project->budget"
+            inputClass="w-40"
+            type="number"
+            :icon="$user->currency_format->isBefore() ? $project->currency : null"
+            :iconAfter="$user->currency_format->isAfter() ? $project->currency : null"
+            :value="$project->budget / 100"
             label="{{ __('project.budget') }}"
             placeholder="{{ __('project.budget') }}"
+        />
+
+        <x-form.field
+            name="rate"
+            inputClass="w-45"
+            type="number"
+            iconAfter="{{ (new \App\Infrastructure\I18n\MoneyFormatter)->symbol($user->currency) }}/{{ __('project.hour') }}"
+            :value="$project->rate / 100"
+            label="{{ __('project.rate') }}"
+            placeholder="{{ __('project.rate') }}"
         />
 
         <div class="flex justify-end">

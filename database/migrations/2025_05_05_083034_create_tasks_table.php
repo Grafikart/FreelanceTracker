@@ -18,15 +18,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::create('project_task', function (Blueprint $table) {
-            $table->primary([
-                'project_id',
-                'task_id',
-            ]);
-            $table->foreignIdFor(Project::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Task::class)->constrained()->cascadeOnDelete();
-        });
     }
 
     /**
@@ -35,6 +26,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tasks');
-        Schema::dropIfExists('project_task');
     }
 };

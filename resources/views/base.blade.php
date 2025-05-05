@@ -79,16 +79,6 @@
                         </li>
                         <li>
                             <a
-                                href="{{ route("clients.index") }}"
-                                @class([
-                                    "menu-active" => request()->routeIs("clients.*"),
-                                ])
-                            >
-                                {{ __("menu.clients") }}
-                            </a>
-                        </li>
-                        <li>
-                            <a
                                 href="{{ route("estimates.index") }}"
                                 class="{{ request()->routeIs("estimates.*") ? "menu-active" : "" }}"
                             >
@@ -98,7 +88,9 @@
                         <li>
                             <a
                                 href="{{ route("clients.index") }}"
-                                class="{{ request()->routeIs("clients.*") ? "menu-active" : "" }}"
+                                @class([
+                                    "menu-active" => request()->routeIs("clients.*"),
+                                ])
                             >
                                 {{ __("menu.clients") }}
                             </a>
